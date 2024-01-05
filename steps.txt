@@ -1,2 +1,2 @@
 docker build -t magic-button .
-docker run --name magic-butoon -p 9090:9090 magic-button
+docker run --name magic-button -p 9090:9090 magic-button
