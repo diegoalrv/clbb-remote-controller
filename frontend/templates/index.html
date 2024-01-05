@@ -4,63 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Control zone</title>
-    <!-- <link rel="icon" type="image/jpg" href="/static/img/citylogo.jpg"/> -->
     <link rel="stylesheet" href="/static/styles.css"/>
 </head>
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-m-12 col-l-12" style="background-color: yellow;"><a>Actual</a></div>
+            <div class="col-m-12 col-l-12" style="background-color: yellow;"><a>Mapas</a></div>
             <div class="col-m-12 col-l-12">
-                <button class="glowing-button" onclick="cambiarURL('https://static.nationalgeographicla.com/files/styles/image_3200/public/nationalgeographic_1468962.webp?w=1600&h=900')">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-            </div>
-            <div class="col-m-12 col-l-12" style="background-color: black;"><b>Futuro</b></div>
-            <div class="col-m-12 col-l-12">
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
-                <button class="glowing-button" onclick="cambiarURL()">XD</button>
+                <button class="glowing-button" onclick="cambiarURL(1)">Diversidad de Suelo</button>
+                <button class="glowing-button" onclick="cambiarURL(4)">Población</button>
+                <button class="glowing-button" onclick="cambiarURL(6)">Parques</button>
+                <button class="glowing-button" onclick="cambiarURL(7)">Plazas</button>
+                <button class="glowing-button" onclick="cambiarURL()">Educación</button>
+                <button class="glowing-button" onclick="cambiarURL()">Proximidad de cultura</button>
             </div>
         </div>
     </div>    
+
+    <script>
+        function cambiarURL(numero) {
+            // Crear un objeto con la estructura requerida
+            var requestData = {
+                "map_type": numero
+            };
+
+            // Realizar una solicitud POST utilizando fetch
+            fetch('http://192.168.31.120:8500/api/set_map_type/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Manejar la respuesta del servidor si es necesario
+                console.log('Respuesta del servidor:', data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
 </body>
 </html>
