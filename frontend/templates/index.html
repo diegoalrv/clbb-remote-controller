@@ -15,27 +15,24 @@
                 <button class="glowing-button" onclick="cambiarURL(4)">Población</button>
                 <button class="glowing-button" onclick="cambiarURL(6)">Parques</button>
                 <button class="glowing-button" onclick="cambiarURL(7)">Plazas</button>
-                <button class="glowing-button" onclick="cambiarURL()">Educación</button>
-                <button class="glowing-button" onclick="cambiarURL()">Proximidad de cultura</button>
+                <button class="glowing-button" onclick="cambiarURL(2)">Educación</button>
+                <button class="glowing-button" onclick="cambiarURL(3)">Proximidad de cultura</button>
+                <button class="glowing-button" onclick="cambiarURL(8)">Aprovisionamiento</button>
+                <button class="glowing-button" onclick="cambiarURL(9)">Comercio</button>
+                <button class="glowing-button" onclick="cambiarURL(10)">Edificacion</button>
+                <button class="glowing-button" onclick="cambiarURL(10+1)">Salud</button>
             </div>
         </div>
     </div>    
 
     <script>
         function cambiarURL(numero) {
-            // Crear un objeto con la estructura requerida
-            var requestData = {
-                "map_type": numero
-            };
-
+            var url = 'http://192.168.31.120:8500//api/set_map_type/';
+            if(numero != undefined){
+                url += '?map_type=' + numero;
+            }
             // Realizar una solicitud POST utilizando fetch
-            fetch('http://192.168.31.120:8500/api/set_map_type/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(requestData)
-            })
+            fetch(url)
             .then(response => response.json())
             .then(data => {
                 // Manejar la respuesta del servidor si es necesario
