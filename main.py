@@ -3,6 +3,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import uvicorn
+#import requests
 
 # activar entorno: venv\Scripts\activate.bat
 
@@ -21,7 +22,12 @@ async def read_item(request: Request):
     return templates.TemplateResponse(
         request=request, name="index.html"
     )
-
+# @app.get("/obtenerdatos")
+# async def obtenerdatos():
+#     url_django = 
+#     response = requests.get(url_django)
+#     datos_django = response.json()
+#     return datos_django
 # @app.get("/get_json") 
 # async def enviar_json():
 #     data = {

@@ -21,6 +21,8 @@
                 <button class="glowing-button" onclick="cambiarURL(9)">Comercio</button>
                 <button class="glowing-button" onclick="cambiarURL(10)">Edificacion</button>
                 <button class="glowing-button" onclick="cambiarURL(10+1)">Salud</button>
+                <button class="glowing-button" onclick="SS(55)">Start</button>
+                <button class="glowing-button" onclick="SS(56)">Stop</button>
             </div>
         </div>
     </div>    
@@ -42,6 +44,26 @@
                 console.error('Error:', error);
             });
         }
+        function SS(numero) {
+            var url = 'http://192.168.31.140:8000/';
+            if(numero == 55){
+                url += 'start';
+            }
+            else{
+                url += 'stop';
+            }
+            // Realizar una solicitud POST utilizando fetch
+            fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                // Manejar la respuesta del servidor si es necesario
+                console.log('Respuesta del servidor:', data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
     </script>
+
 </body>
 </html>
