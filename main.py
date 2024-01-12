@@ -10,21 +10,17 @@ import re
 
 app = FastAPI()
 
+#ruta para manejar plantillas
 templates = Jinja2Templates(directory="frontend/templates")
+#ruta para subir los css, img 
 app.mount("/static", StaticFiles(directory="frontend/static"), name="static")
 
+#inicio pagina de botones
 @app.get("/", response_class=HTMLResponse)
 async def read_item(request: Request):
     return templates.TemplateResponse(
         request=request, name="index.html"
     )
-
-@app.get("/obtenerdatos")
-async def obtenerdatos():
-    url_django = 'http://192.168.31.120:8500/what_map/'
-    response = requests.get(url_django)
-    datos_django = response.json()
-    return datos_django
 
 #funcion para limpiar los datos
 def names_clean(json_data):
@@ -34,12 +30,13 @@ def names_clean(json_data):
         item["name"] = words.capitalize()
     return json_data
 
+#nueva pagina de botones 
 @app.get("/f", response_class=HTMLResponse)
 async def obtenerdatos(request: Request):
     url_django = 'http://192.168.31.120:8500/what_map/'
     response = requests.get(url_django) #obtiene los datos
     datos_django = names_clean(response.json()) #limpia los datos
-    return templates.TemplateResponse("index2.html", {"request": request, "datos_django": datos_django})
+    return templates.TemplateResponse("botones.html", {"request": request, "datos_django": datos_django})
 
 
 if __name__ == "__main__":
