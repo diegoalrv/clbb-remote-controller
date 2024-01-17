@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  magic-button:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9090:9090"
