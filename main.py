@@ -31,12 +31,19 @@ def names_clean(json_data):
     return json_data
 
 #nueva pagina de botones 
-@app.get("/f", response_class=HTMLResponse)
+@app.get("/botones", response_class=HTMLResponse)
 async def obtenerdatos(request: Request):
     url_django = 'http://192.168.31.120:8500/what_map/'
     response = requests.get(url_django) #obtiene los datos
     datos_django = names_clean(response.json()) #limpia los datos
     return templates.TemplateResponse("botones.html", {"request": request, "datos_django": datos_django})
+
+
+@app.get("/test/", response_class=HTMLResponse)
+async def read_item(request: Request):
+    return templates.TemplateResponse(
+        request=request, name="hola.html"
+    )
 
 
 if __name__ == "__main__":

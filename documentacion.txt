@@ -1,3 +1,12 @@
+Introduccion 
+
+La aplicacion funciona como aplicacion web, donde se ingresa a la direccion IP del computador que este ejecutando la app
+
+
+
+
+
+
 Ejecucion de la aplicacion en el docker
 
 1. Ceacion de la imagen

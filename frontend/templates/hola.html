@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Estilo inicial del botón (gris) */
+    #miBoton {
+      background-color: gray;
+      padding: 10px 20px;
+      border: none;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+
+    /* Estilo cuando el botón es presionado (verde) */
+    #miBoton.presionado {
+      background-color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- El botón con el id "miBoton" -->
+  <button id="miBoton">Presionar</button>
+
+  <script>
+    // JavaScript para alternar entre colores al hacer clic en el botón
+    var boton = document.getElementById('miBoton');
+
+    boton.addEventListener('click', function() {
+      // Alternar la clase 'presionado' para cambiar el estilo
+      this.classList.toggle('presionado');
+    });
+  </script>
+
+</body>
+</html>
