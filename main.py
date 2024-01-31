@@ -1,12 +1,9 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import uvicorn
 import requests
-import re
-
-# activar entorno: venv\Scripts\activate.bat
 
 app = FastAPI()
 
@@ -37,14 +34,6 @@ async def obtenerdatos(request: Request):
     response = requests.get(url_django) #obtiene los datos
     datos_django = names_clean(response.json()) #limpia los datos
     return templates.TemplateResponse("botones.html", {"request": request, "datos_django": datos_django})
-
-
-@app.get("/test/", response_class=HTMLResponse)
-async def read_item(request: Request):
-    return templates.TemplateResponse(
-        request=request, name="hola.html"
-    )
-
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=9090)

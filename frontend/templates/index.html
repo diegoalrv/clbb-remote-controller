@@ -23,11 +23,18 @@
                 <button class="glowing-button" onclick="cambiarURL(10+1)">Salud</button>
                 <button class="glowing-button" onclick="SS(55)">Start</button>
                 <button class="glowing-button" onclick="SS(56)">Stop</button>
+                <button class="glowing-button" onclick="window.open('http://192.168.31.247:8081/video_feed')">Abrir Video</button>
+                <button class="glowing-button" onclick="setMap()">Set Map</button>
+
+
             </div>
         </div>
     </div>    
 
     <script>
+        function setMap(){
+            fetch(`http://192.168.31.120:8500/api/set_map_state/?slots=13,14,15,16,17,18,19`)
+        }
         function cambiarURL(numero) {
             var url = 'http://192.168.31.120:8500//api/set_map_type/';
             if(numero != undefined){
@@ -45,7 +52,7 @@
             });
         }
         function SS(numero) {
-            var url = 'http://192.168.31.140:8000/';
+            var url = 'http://192.168.31.247:8000/';
             if(numero == 55){
                 url += 'start';
             }
@@ -63,6 +70,12 @@
                 console.error('Error:', error);
             });
         }
+
+        function cameraON() {
+            fetch('192.168.31.247:8081/status').then(response)
+            return true
+        }
+
     </script>
 
 </body>
