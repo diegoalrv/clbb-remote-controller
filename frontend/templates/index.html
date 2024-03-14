@@ -21,10 +21,15 @@
                 <button class="glowing-button" onclick="cambiarURL(9)">Comercio</button>
                 <button class="glowing-button" onclick="cambiarURL(10)">Edificacion</button>
                 <button class="glowing-button" onclick="cambiarURL(10+1)">Salud</button>
+                <button class="glowing-button" onclick="gif('CextensoA')">Gif Bici Actual</button>
+                <button class="glowing-button" onclick="gif('Cextenso F')">Gif Bici Futuro</button>
+                <button class="glowing-button" onclick="gif('Cextenso AF')">Gif Bici AF</button>
+                <!-- <button class="glowing-button" onclick="gif('Z')">Gif Bici Actual</button>
+                <button class="glowing-button" onclick="gif('c')">Gif Personas</button>
                 <button class="glowing-button" onclick="SS(55)">Start</button>
-                <button class="glowing-button" onclick="SS(56)">Stop</button>
-                <button class="glowing-button" onclick="window.open('http://192.168.31.247:8081/video_feed')">Abrir Video</button>
-                <button class="glowing-button" onclick="setMap()">Set Map</button>
+                <button class="glowing-button" onclick="SS(56)">Stop</button> -->
+                <!-- <button class="glowing-button" onclick="window.open('http://192.168.31.247:8081/video_feed')">Abrir Video</button> -->
+                <!-- <button class="glowing-button" onclick="setMap()">Set Map</button> -->
 
 
             </div>
@@ -74,6 +79,30 @@
         function cameraON() {
             fetch('192.168.31.247:8081/status').then(response)
             return true
+        }
+
+        function gif(nombregif) {
+            let url = `http://192.168.31.120:5000/hola2/${encodeURIComponent(nombregif)}`;
+            var url2 = 'http://192.168.31.120:8500/api/set_map_type/?map_type=0'
+            // Realizar una solicitud POST utilizando fetch
+            fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                // Manejar la respuesta del servidor si es necesario
+                console.log('Respuesta del servidor:', data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+            fetch(url2)
+            .then(response => response.json())
+            .then(data => {
+                // Manejar la respuesta del servidor si es necesario
+                console.log('Respuesta del servidor:', data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
         }
 
     </script>
