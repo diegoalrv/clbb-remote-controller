@@ -46,15 +46,16 @@
         background-position: 0 0;
     }
 }
+/* AL PARECER NO FUNCIONAN
 a{
-    color: black;
+    color: rgb(205, 11, 11);
     text-decoration: none;
     font-size: large;
     font-weight: bold;
-}
-b{
+} */
+/* b{ 
     color: white;
     text-decoration: none;
     font-size: large;
     font-weight: bold;
-}
+} */

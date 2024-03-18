@@ -8,8 +8,8 @@
 </head>
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col-m-12 col-l-12" style="background-color: yellow;"><a>Mapas</a></div>
+        <div class="row" >
+            <div class="col-m-12 col-l-12" style="background-color: black; text-align: center;"><a style="color: bisque;">Mapas</a></div>
             <div class="col-m-12 col-l-12">
                 <button class="glowing-button" onclick="cambiarURL(1)">Diversidad de Suelo</button>
                 <button class="glowing-button" onclick="cambiarURL(4)">Población</button>
@@ -24,22 +24,90 @@
                 <button class="glowing-button" onclick="gif('CextensoA')">Gif Bici Actual</button>
                 <button class="glowing-button" onclick="gif('Cextenso F')">Gif Bici Futuro</button>
                 <button class="glowing-button" onclick="gif('Cextenso AF')">Gif Bici AF</button>
-                <!-- <button class="glowing-button" onclick="gif('Z')">Gif Bici Actual</button>
-                <button class="glowing-button" onclick="gif('c')">Gif Personas</button>
-                <button class="glowing-button" onclick="SS(55)">Start</button>
-                <button class="glowing-button" onclick="SS(56)">Stop</button> -->
-                <!-- <button class="glowing-button" onclick="window.open('http://192.168.31.247:8081/video_feed')">Abrir Video</button> -->
-                <!-- <button class="glowing-button" onclick="setMap()">Set Map</button> -->
+            </div>
+        </div>
+    </div>
 
-
+    <div class="container">
+        <div class="row">
+            <div class="col-m-12 col-l-12" style="background-color: black; text-align: center;"><a style="color: bisque;">Estados</a></div>
+            <div class="col-m-12 col-l-12">
+                <button class="glowing-button" onclick="updateStates(0)">Default</button>
+                <button id="toggleButton1" class="glowing-button" onclick="updateStates(13)">Placa 1 A</button>
+                <button id="toggleButton2" class="glowing-button" onclick="updateStates(14)">Placa 2 A</button>
+                <button id="toggleButton3" class="glowing-button" onclick="updateStates(15)">Placa 3 A</button>
+                <button id="toggleButton4" class="glowing-button" onclick="updateStates(16)">Placa 4 A</button>
+                <button id="toggleButton5" class="glowing-button" onclick="updateStates(17)">Placa 5 A</button>
+                <button id="toggleButton6" class="glowing-button" onclick="updateStates(18)">Placa 6 A</button>
+                <button id="toggleButton7" class="glowing-button" onclick="updateStates(19)">Placa 7 A</button>
             </div>
         </div>
     </div>    
 
     <script>
-        function setMap(){
-            fetch(`http://192.168.31.120:8500/api/set_map_state/?slots=13,14,15,16,17,18,19`)
+        
+        // function setMap(){
+        //     fetch(http://192.168.31.120:8500/api/set_map_state/?slots=13,14,15,16,17,18,19)
+        // }
+        var button1 = document.getElementById("toggleButton1");
+        var button2 = document.getElementById("toggleButton2");
+        var button3 = document.getElementById("toggleButton3");
+        var button4 = document.getElementById("toggleButton4");
+        var button5 = document.getElementById("toggleButton5");
+        var button6 = document.getElementById("toggleButton6");
+        var button7 = document.getElementById("toggleButton7");
+        var arregloboton=[button1,button2,button3,button4,button5,button6,button7];
+        var state = [13,14,15,16,17,18,19];
+
+        function updateStates(numero) {
+            var url = 'http://192.168.31.120:8500/api/set_map_state/';
+            for (let n = 0; n < state.length; n++){
+            if (state[n]==numero || state[n]==(numero+7)) {
+              if(state[n]>=20){
+                state[n] -=7;
+              }
+              else{
+                state[n] += 7;
+              }
+              let tempBotonTextArreglo=arregloboton[n].textContent.split("");
+              if(tempBotonTextArreglo[tempBotonTextArreglo.length -1] == "A"){
+                tempBotonTextArreglo[tempBotonTextArreglo.length -1] = "F";
+                arregloboton[n].textContent=tempBotonTextArreglo.join("");
+              }
+              else{
+                tempBotonTextArreglo[tempBotonTextArreglo.length-1] = "A";
+                arregloboton[n].textContent=tempBotonTextArreglo.join("");
+              }
+            }
+            else if(numero==0) {
+                state=[13,14,15,16,17,18,19];
+                
+                for(let i =0;i<7;i++){
+                    let tempBotonTextArreglo2=arregloboton[i].textContent.split("");
+                    tempBotonTextArreglo2[tempBotonTextArreglo2.length-1] = "A";
+                    arregloboton[i].textContent=tempBotonTextArreglo2.join("");
+
+                }
+            }
+         }
+
+         url += "?slots=" +state.toString();
+         // Realizar una solicitud POST utilizando fetch
+         fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                // Manejar la respuesta del servidor si es necesario
+                console.log('Respuesta del servidor:', data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+
         }
+
+       
+        
         function cambiarURL(numero) {
             var url = 'http://192.168.31.120:8500//api/set_map_type/';
             if(numero != undefined){
@@ -82,7 +150,7 @@
         }
 
         function gif(nombregif) {
-            let url = `http://192.168.31.120:5000/hola2/${encodeURIComponent(nombregif)}`;
+            let url = 'http://192.168.31.120:5000/hola2/${encodeURIComponent(nombregif)}';
             var url2 = 'http://192.168.31.120:8500/api/set_map_type/?map_type=0'
             // Realizar una solicitud POST utilizando fetch
             fetch(url)
