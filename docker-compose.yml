@@ -3,6 +3,7 @@ version: '3'
 services:
   magic-button:
     container_name: magic-button
+    restart: always
     build:
       context: .
       dockerfile: Dockerfile

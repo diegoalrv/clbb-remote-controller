@@ -1,0 +1,104 @@
+/* Posicionamiento en navegadores web */
+.background {
+    width: 1000px;
+    height: 490px;
+    border: solid black 3px;
+    background-image: url('/static/map.png');
+    background-size: contain;
+    position: relative;
+    clear: both;
+    top: 0.8em;
+}
+.placaDef
+{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    margin: 40px;
+    transform: scale(1.2, 1.2);
+    
+}
+.placa1 {
+    position: absolute;
+    left: 145px;
+    top: 65px;
+} 
+.placa2 {
+    position: absolute;
+    left: 145px;
+    top: 265px;
+} 
+.placa3 {
+    position: absolute;
+    left: 345px;
+    top: 165px;
+} 
+.placa4 {
+    position: absolute;
+    left: 505px;
+    top: 165px;
+} 
+.placa5 {
+    position: absolute;
+    left: 655px;
+    top: 180px;
+} 
+.placa6 {
+    position: absolute;
+    left: 800px;
+    top: 190px;
+} 
+.placa7 {
+    position: absolute;
+    left: 800px;
+    top: 80px;
+} 
+/* Posicionamiento en dispositivos móviles*/
+
+@media only screen and (max-width: 600px) {
+    .background {
+        width: 500px; /* Cambiar el ancho al 90% del tamaño de la pantalla */
+        height: 245px; /* Altura automática */
+        border: solid black 1px; /* Borde más delgado */
+        top: 1em; /* Ajustar posición vertical */
+    }
+    .placaDef {
+        margin: 9px; /* Reducir el margen */
+        transform: scale(0.6); /* Eliminar la escala */
+    }
+    .placa1 {
+        transform: scale(0.5);
+        left: 10%; /* Ajustar posición */
+        top: 15%; /* Ajustar posición */
+    } 
+    .placa2 {
+        transform: scale(0.5);
+        left: 10%; /* Ajustar posición */
+        top: 40%; /* Ajustar posición */
+    } 
+    .placa3 {
+        transform: scale(0.5);
+        left: 30%; /* Ajustar posición */
+        top: 30%; /* Ajustar posición */
+    } 
+    .placa4 {
+        transform: scale(0.5);
+        left: 45%; /* Ajustar posición */
+        top: 30%; /* Ajustar posición */
+    } 
+    .placa5 {
+        transform: scale(0.5);
+        left: 60%; /* Ajustar posición */
+        top: 30%; /* Ajustar posición */
+    } 
+    .placa6 {
+        transform: scale(0.5);
+        left: 75%; /* Ajustar posición */
+        top: 32%; /* Ajustar posición */
+    } 
+    .placa7 {
+        transform: scale(0.5);
+        left: 75%; /* Ajustar posición */
+        top: 15%; /* Ajustar posición */
+    } 
+}
