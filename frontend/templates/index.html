@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="row">
+        <div class="row"> 
             <div class="col-m-12 col-l-12" style="background-color: yellow;"><a>Mapas</a></div>
             <div class="col-m-12 col-l-12">
                 <button class="glowing-button" onclick="cambiarURL(1)">Diversidad de Suelo</button>
@@ -21,6 +21,11 @@
                 <button class="glowing-button" onclick="cambiarURL(9)">Comercio</button>
                 <button class="glowing-button" onclick="cambiarURL(10)">Edificacion</button>
                 <button class="glowing-button" onclick="cambiarURL(10+1)">Salud</button>
+                <button class="glowing-button" onclick="gif('a')">Gif Azul Bici Futuro</button>
+                <button class="glowing-button" onclick="gif('b')">Gif Azul Bici Actual</button>
+                <button class="glowing-button" onclick="gif('x')">Gif Bici Futuro</button>
+                <button class="glowing-button" onclick="gif('Z')">Gif Bici Actual</button>
+                <button class="glowing-button" onclick="gif('c')">Gif Personas</button>
                 <button class="glowing-button" onclick="SS(55)">Start</button>
                 <button class="glowing-button" onclick="SS(56)">Stop</button>
             </div>
@@ -45,7 +50,7 @@
             });
         }
         function SS(numero) {
-            var url = 'http://192.168.31.140:8000/';
+            var url = 'http://192.168.31.247:8001/';
             if(numero == 55){
                 url += 'start';
             }
@@ -54,6 +59,46 @@
             }
             // Realizar una solicitud POST utilizando fetch
             fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                // Manejar la respuesta del servidor si es necesario
+                console.log('Respuesta del servidor:', data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+        function cambiaraestatic(numero) {
+            var url = 'http://192.168.31.120:8500//loadaestatic/';
+            if(numero != undefined ){
+                url += '?aestatic_type=' + numero;
+            }
+            // Realizar una solicitud POST utilizando fetch
+            fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                // Manejar la respuesta del servidor si es necesario
+                console.log('Respuesta del servidor:', data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        function gif(nombregif) {
+            let url = `http://192.168.31.120:5000/hola2/${encodeURIComponent(nombregif)}`;
+            var url2 = 'http://192.168.31.120:8500/api/set_map_type/?map_type=0'
+            // Realizar una solicitud POST utilizando fetch
+            fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                // Manejar la respuesta del servidor si es necesario
+                console.log('Respuesta del servidor:', data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+            fetch(url2)
             .then(response => response.json())
             .then(data => {
                 // Manejar la respuesta del servidor si es necesario

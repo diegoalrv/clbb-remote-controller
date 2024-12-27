@@ -1,2 +1,2 @@
 docker build -t magic-button .
-docker run -d --name magic-button -p 9090:9090 -v $pwd:/magic-button magic-button --network clbb
+docker run -d --name magic-button -p 9090:9090 magic-button 
