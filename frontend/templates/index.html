@@ -28,11 +28,18 @@
                 <button class="glowing-button" onclick="gif('c')">Gif Personas</button>
                 <button class="glowing-button" onclick="SS(55)">Start</button>
                 <button class="glowing-button" onclick="SS(56)">Stop</button>
+                <button class="glowing-button" onclick="window.open('http://192.168.31.247:8081/video_feed')">Abrir Video</button>
+                <button class="glowing-button" onclick="setMap()">Set Map</button>
+
+
             </div>
         </div>
     </div>    
 
     <script>
+        function setMap(){
+            fetch(`http://192.168.31.120:8500/api/set_map_state/?slots=13,14,15,16,17,18,19`)
+        }
         function cambiarURL(numero) {
             var url = 'http://192.168.31.120:8500//api/set_map_type/';
             if(numero != undefined){
@@ -50,7 +57,7 @@
             });
         }
         function SS(numero) {
-            var url = 'http://192.168.31.247:8001/';
+            var url = 'http://192.168.31.140:8000/';
             if(numero == 55){
                 url += 'start';
             }
@@ -59,46 +66,6 @@
             }
             // Realizar una solicitud POST utilizando fetch
             fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                // Manejar la respuesta del servidor si es necesario
-                console.log('Respuesta del servidor:', data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        }
-        function cambiaraestatic(numero) {
-            var url = 'http://192.168.31.120:8500//loadaestatic/';
-            if(numero != undefined ){
-                url += '?aestatic_type=' + numero;
-            }
-            // Realizar una solicitud POST utilizando fetch
-            fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                // Manejar la respuesta del servidor si es necesario
-                console.log('Respuesta del servidor:', data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        }
-
-        function gif(nombregif) {
-            let url = `http://192.168.31.120:5000/hola2/${encodeURIComponent(nombregif)}`;
-            var url2 = 'http://192.168.31.120:8500/api/set_map_type/?map_type=0'
-            // Realizar una solicitud POST utilizando fetch
-            fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                // Manejar la respuesta del servidor si es necesario
-                console.log('Respuesta del servidor:', data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-            fetch(url2)
             .then(response => response.json())
             .then(data => {
                 // Manejar la respuesta del servidor si es necesario
